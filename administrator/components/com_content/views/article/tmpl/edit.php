@@ -148,6 +148,19 @@ JFactory::getDocument()->addScriptDeclaration('
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php endif; ?>
 
+		<?php if ($this->canDo->get('core.admin')) : ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'menulink', JText::_('COM_CONTENT_MENU_LINK', true)); ?>
+			<div class="row-fluid form-horizontal-desktop">
+				<div class="span6">
+					<?php echo $this->form->getControlGroup('menulink'); ?>
+					<?php foreach ($this->form->getGroup('menulink') as $field) : ?>
+						<?php echo $field->getControlGroup(); ?>
+					<?php endforeach; ?>
+				</div>
+			</div> 
+			<?php echo JHtml::_('bootstrap.endTab'); ?>
+		<?php endif; ?>
+
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value="" />
