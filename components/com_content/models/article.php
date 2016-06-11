@@ -87,7 +87,7 @@ class ContentModelArticle extends JModelItem
 				$query = $db->getQuery(true)
 					->select(
 						$this->getState(
-							'item.select', 'a.id, a.asset_id, a.title, a.alias, a.introtext, a.fulltext, ' .
+							'item.select', 'a.id, a.asset_id, a.title, a.alias, a.introtext, a.fulltext,a.newtextbox, ' .
 							// If badcats is not null, this means that the article is inside an unpublished category
 							// In this case, the state is set to 0 to indicate Unpublished (even if the article state is Published)
 							'CASE WHEN badcats.id is null THEN a.state ELSE 0 END AS state, ' .
