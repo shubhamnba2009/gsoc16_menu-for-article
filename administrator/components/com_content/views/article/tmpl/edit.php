@@ -87,6 +87,10 @@ JFactory::getDocument()->addScriptDeclaration('
 				<fieldset class="adminform">
 					<?php echo $this->form->getInput('articletext'); ?>
 				</fieldset>
+				<div class="clr"></div>
+					<label>Article Text - Japanese Text</label>
+				<div class="clr"></div>
+					<?php echo $this->form->getInput('newtextbox'); ?>
 			</div>
 			<div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
