@@ -111,6 +111,7 @@ JHtml::_('behavior.caption');
 	endif; ?>
 	<div itemprop="articleBody">
 		<?php echo $this->item->text; ?>
+		<?php echo $this->item->newtextbox; ?>
 	</div>
 
 	<?php if ($info == 1 || $info == 2) : ?>
