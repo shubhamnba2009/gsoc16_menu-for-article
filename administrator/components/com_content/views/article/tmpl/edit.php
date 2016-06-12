@@ -88,7 +88,7 @@ JFactory::getDocument()->addScriptDeclaration('
 					<?php echo $this->form->getInput('articletext'); ?>
 				</fieldset>
 				<div class="clr"></div>
-					<label>Article Text - Japanese Text</label>
+					<?php echo $this->form->getLabel('articletext'); ?>
 				<div class="clr"></div>
 					<?php echo $this->form->getInput('newtextbox'); ?>
 			</div>
