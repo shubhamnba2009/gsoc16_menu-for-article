@@ -672,6 +672,7 @@
 			description="COM_CONTENT_FIELD_IMAGE_CAPTION_DESC"
 			size="20"/>
 	</fields>
+
 	<fields name="menulink" label="COM_CONTENT_MENU_LINK_OPTIONS">
 		<field
 				name="title"
@@ -679,7 +680,17 @@
 				label="COM_CONTENT_ITEM_FIELD_TITLE_LABEL"
 				description="COM_CONTENT_ITEM_FIELD_TITLE_DESC"
 				class="input-xxlarge input-large-text"
-				size="40"/>
+				size="40"
+		/>
+		<field
+				name="menutype"
+				type="menu"
+				label="COM_CONTENT_MENUS_MENUNAME_LABEL"
+				description="COM_CONTENT_MENUS_MENUNAME_DESC"
+				class="inputbox"
+				required="false"
+		        size="1"
+		/>
 	</fields>
 	<fields name="urls" label="COM_CONTENT_FIELD_URLS_OPTIONS">
 		<field
