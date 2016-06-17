@@ -156,7 +156,9 @@ class ContentControllerArticle extends JControllerForm
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
-
+		require_once JPATH_ADMINISTRATOR . '/components/com_menus/models/item.php';
+		$itemmodel = JModelAdmin::getInstance('Item', 'MenusModel', array());
+		$itemmodel->save($validData);
 		return;
 	}
 }
