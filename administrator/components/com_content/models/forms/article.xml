@@ -697,6 +697,7 @@
 				class="input-xxlarge input-large-text"
 				size="40"
 		/>
+
 		<field
 				name="menutype"
 				type="menu"
@@ -706,6 +707,21 @@
 				required="false"
 		        size="1"
 		/>
+
+		<field
+				name="parent_id"
+				type="menuparent"
+				label="COM_CONTENT_MENUS_ITEM_FIELD_PARENT_LABEL"
+				description="COM_CONTENT_MENUS_ITEM_FIELD_PARENT_DESC"
+				default="1"
+				filter="int"
+				size="1"
+				>
+			<option value="1">
+				COM_CONTENT_MENUS_ITEM_ROOT
+			</option>
+		</field>
+		
 	</fields>
 	<fields name="urls" label="COM_CONTENT_FIELD_URLS_OPTIONS">
 		<field
