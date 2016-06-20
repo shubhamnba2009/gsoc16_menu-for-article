@@ -98,6 +98,7 @@ class ContentControllerArticle extends JControllerForm
 		{
 			// Now test the owner is the user.
 			$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
+
 			if (empty($ownerId) && $recordId)
 			{
 				// Need to do a lookup from the model.
@@ -178,6 +179,7 @@ class ContentControllerArticle extends JControllerForm
 		$vaData['language'] = '*';
 		$vaData['client_id'] = 0;
 		$itemmodel->save($vaData);
+
 		return;
 	}
 }
