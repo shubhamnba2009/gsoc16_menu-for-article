@@ -688,13 +688,22 @@
 			size="20"/>
 	</fields>
 
-	<fields name="menulink" label="COM_CONTENT_MENU_LINK_OPTIONS">
+	<fields name="menulink" label="COM_CONTENT_MENU_LINK_OPTIONS" addfieldpath="/administrator/components/com_menus/models/fields">
 		<field
-				name="title"
+				name="menutitle"
 				type="text"
 				label="COM_CONTENT_ITEM_FIELD_TITLE_LABEL"
 				description="COM_CONTENT_ITEM_FIELD_TITLE_DESC"
 				class="input-xxlarge input-large-text"
+				size="40"
+		/>
+
+		<field
+				name="menualias"
+				type="alias"
+				label="JFIELD_ALIAS_LABEL"
+				description="JFIELD_ALIAS_DESC"
+				hint="JFIELD_ALIAS_PLACEHOLDER"
 				size="40"
 		/>
 
@@ -721,7 +730,7 @@
 				COM_CONTENT_MENUS_ITEM_ROOT
 			</option>
 		</field>
-		
+
 	</fields>
 	<fields name="urls" label="COM_CONTENT_FIELD_URLS_OPTIONS">
 		<field

@@ -156,9 +156,28 @@ class ContentControllerArticle extends JControllerForm
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
-		require_once JPATH_ADMINISTRATOR . '/components/com_menus/models/item.php';
+		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_menus/models', 'MenusModel');
 		$itemmodel = JModelAdmin::getInstance('Item', 'MenusModel', array());
-		$itemmodel->save($validData);
+		$vaData['id'] = 0;
+		$vaData['menutype'] = 'mainmenu';
+		$vaData['title'] = $validData['menutitle'];
+		$vaData['alias'] = $validData['menualias'];
+		$vaData['path'] = 'homepage';
+		$vaData['link'] = 'index.php?option=com_content&view=article&id=' . $validData['id'];
+		$vaData['type'] = 'component';
+		$vaData['published'] = 1;
+		$vaData['parent_id'] = 1;
+		$vaData['level'] = 1;
+		$vaData['component_id'] = 22;
+		$vaData['checked_out'] = 0;
+		$vaData['checked_out_time'] = '0000-00-00 00:00:00';
+		$vaData['browserNav'] = 0;
+		$vaData['access'] = 1;
+		$vaData['template_style_id'] = 0;
+		$vaData['home'] = 0;
+		$vaData['language'] = '*';
+		$vaData['client_id'] = 0;
+		$itemmodel->save($vaData);
 		return;
 	}
 }
