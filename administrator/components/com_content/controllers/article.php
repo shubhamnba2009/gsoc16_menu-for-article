@@ -155,30 +155,47 @@ class ContentControllerArticle extends JControllerForm
 	 *
 	 * @since	3.1
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(JModelLegacy $model, $validData)
 	{
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_menus/models', 'MenusModel');
-		$itemmodel = JModelAdmin::getInstance('Item', 'MenusModel', array());
+		$itemModel = JModelAdmin::getInstance('Item', 'MenusModel', array());
+		$itemModel->addTablePath(JPATH_ADMINISTRATOR . '/components/com_menus/tables');
+
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select('extension_id');
+		$query->from($db->quoteName('#__extensions'));
+		$query->where($db->quoteName('name') . " = " . $db->quote('com_content'));
+
+		$db->setQuery($query);
+		$result = $db->loadResult();
+
+		$query = $db->getQuery(true);
+		$query->select('id');
+		$query->from($db->quoteName('#__content'));
+		$query->where($db->quoteName('title') . " = " . $db->quote($validData['title']));
+
+		$db->setQuery($query);
+		$articleId = $db->loadResult();
+
 		$vaData['id'] = 0;
-		$vaData['menutype'] = 'mainmenu';
-		$vaData['title'] = $validData['menutitle'];
-		$vaData['alias'] = $validData['menualias'];
-		$vaData['path'] = 'homepage';
-		$vaData['link'] = 'index.php?option=com_content&view=article&id=' . $validData['id'];
+		$vaData['menutype'] = $validData['menulink']['menutype'];
+		$vaData['title'] = $validData['menulink']['menutitle'];
+		$vaData['alias'] = $validData['menulink']['menualias'];
+		$vaData['link'] = 'index.php?option=com_content&view=article&id=' . $articleId;
 		$vaData['type'] = 'component';
 		$vaData['published'] = 1;
 		$vaData['parent_id'] = 1;
 		$vaData['level'] = 1;
-		$vaData['component_id'] = 22;
-		$vaData['checked_out'] = 0;
-		$vaData['checked_out_time'] = '0000-00-00 00:00:00';
+		$vaData['component_id'] = $result;
 		$vaData['browserNav'] = 0;
 		$vaData['access'] = 1;
 		$vaData['template_style_id'] = 0;
 		$vaData['home'] = 0;
 		$vaData['language'] = '*';
 		$vaData['client_id'] = 0;
-		$itemmodel->save($vaData);
+
+		$itemModel->save($vaData);
 
 		return;
 	}

@@ -1273,8 +1273,7 @@ class MenusModelItem extends JModelAdmin
 		$dispatcher = JEventDispatcher::getInstance();
 		$pk         = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('item.id');
 		$isNew      = true;
-		JModelLegacy::addTablePath(JPATH_ADMINISTRATOR . '/components/com_menus/tables');
-		$table      = JModelLegacy::getTable('Menu', 'MenusTable');
+		$table      = $this->getTable();
 		$context    = $this->option . '.' . $this->name;
 
 		// Include the plugins for the on save events.
