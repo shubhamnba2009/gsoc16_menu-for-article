@@ -158,25 +158,13 @@ class ContentControllerArticle extends JControllerForm
 	protected function postSaveHook(JModelLegacy $model, $validData)
 	{
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_menus/models', 'MenusModel');
-		$itemModel = JModelAdmin::getInstance('Item', 'MenusModel', array());
+		$itemModel = JModelAdmin::getInstance('Item', 'MenusModel');
 		$itemModel->addTablePath(JPATH_ADMINISTRATOR . '/components/com_menus/tables');
 
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query->select('extension_id');
-		$query->from($db->quoteName('#__extensions'));
-		$query->where($db->quoteName('name') . " = " . $db->quote('com_content'));
+		$componentId = JComponentHelper::getComponent('com_content')->id;
 
-		$db->setQuery($query);
-		$result = $db->loadResult();
-
-		$query = $db->getQuery(true);
-		$query->select('id');
-		$query->from($db->quoteName('#__content'));
-		$query->where($db->quoteName('title') . " = " . $db->quote($validData['title']));
-
-		$db->setQuery($query);
-		$articleId = $db->loadResult();
+		JLoader::register('ContentHelper', JPATH_ADMINISTRATOR . '/components/com_content/helpers/content.php');
+		$articleId = ContentHelper::getarticleid($validData['title']);
 
 		$vaData['id'] = 0;
 		$vaData['menutype'] = $validData['menulink']['menutype'];
@@ -187,7 +175,7 @@ class ContentControllerArticle extends JControllerForm
 		$vaData['published'] = 1;
 		$vaData['parent_id'] = 1;
 		$vaData['level'] = 1;
-		$vaData['component_id'] = $result;
+		$vaData['component_id'] = $componentId;
 		$vaData['browserNav'] = 0;
 		$vaData['access'] = 1;
 		$vaData['template_style_id'] = 0;
