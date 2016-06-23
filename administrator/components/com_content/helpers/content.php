@@ -114,26 +114,4 @@ class ContentHelper extends JHelperContent
 
 		return $items;
 	}
-
-	/**
-	 * This function returns the id from the table __content based on title passed as parameter
-	 * 
-	 * @param   string  $item  title
-	 *
-	 * @return   integer
-	 */
-	public static function getarticleid($item)
-	{
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query
-			->select('id')
-			->from($db->qn('#__content'))
-			->where($db->qn('title') . " = " . $db->q($item));
-
-		$db->setQuery($query);
-		$result = $db->loadResult();
-
-		return $result;
-	}
 }
