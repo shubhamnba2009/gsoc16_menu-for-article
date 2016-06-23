@@ -160,24 +160,26 @@ class ContentControllerArticle extends JControllerForm
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_menus/models', 'MenusModel');
 		$itemModel = JModelAdmin::getInstance('Item', 'MenusModel');
 		$itemModel->addTablePath(JPATH_ADMINISTRATOR . '/components/com_menus/tables');
-		$articleId = $model->getState($this->context . '.id')
+		$articleId = $model->getState($this->context . '.id');
 
-		$menuData['id'] = 0;
-		$menuData['menutype'] = $validData['menulink']['menutype'];
-		$menuData['title'] = $validData['menulink']['menutitle'];
-		$menuData['alias'] = $validData['menulink']['menualias'];
-		$menuData['link'] = 'index.php?option=com_content&view=article&id=' . $articleId;
-		$menuData['type'] = 'component';
-		$menuData['published'] = 1;
-		$menuData['parent_id'] = 1;
-		$menuData['level'] = 1;
-		$menuData['component_id'] = JComponentHelper::getComponent('com_content')->id;
-		$menuData['browserNav'] = 0;
-		$menuData['access'] = 1;
-		$menuData['template_style_id'] = 0;
-		$menuData['home'] = 0;
-		$menuData['language'] = '*';
-		$menuData['client_id'] = 0;
+		$menuData = array(
+			'id' => 0,
+			'menutype' => $validData['menulink']['menutype'],
+			'title' => $validData['menulink']['menutitle'],
+			'alias' => $validData['menulink']['menualias'],
+			'link' => 'index.php?option=com_content&view=article&id=' . $articleId,
+			'type' => 'component',
+			'published' => 1,
+			'parent_id' => $validData['menulink']['parent_id'],
+			'level' => 1,
+			'component_id' => JComponentHelper::getComponent('com_content')->id,
+			'browserNav' => 0,
+			'access' => 1,
+			'template_style_id' => 0,
+			'home' => 0,
+			'language' => '*',
+			'client_id' => 0
+		);
 
 		$itemModel->save($menuData);
 
