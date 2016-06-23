@@ -160,12 +160,13 @@ class ContentControllerArticle extends JControllerForm
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_menus/models', 'MenusModel');
 		$itemModel = JModelAdmin::getInstance('Item', 'MenusModel');
 		$itemModel->addTablePath(JPATH_ADMINISTRATOR . '/components/com_menus/tables');
+		$articleId = $model->getState($this->context . '.id')
 
 		$menuData['id'] = 0;
 		$menuData['menutype'] = $validData['menulink']['menutype'];
 		$menuData['title'] = $validData['menulink']['menutitle'];
 		$menuData['alias'] = $validData['menulink']['menualias'];
-		$menuData['link'] = 'index.php?option=com_content&view=article&id=' . $model->getState($this->context . '.id');
+		$menuData['link'] = 'index.php?option=com_content&view=article&id=' . $articleId;
 		$menuData['type'] = 'component';
 		$menuData['published'] = 1;
 		$menuData['parent_id'] = 1;
