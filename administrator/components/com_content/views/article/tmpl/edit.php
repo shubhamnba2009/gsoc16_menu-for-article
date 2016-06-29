@@ -180,3 +180,12 @@ $tmpl = $isModal ? '&tmpl=component' : '';
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
 </form>
+<?php
+$document = JFactory::getDocument();
+$document->addScriptDeclaration('
+function copytext() {
+textBox = document.getElementById("articletitle");
+message = document.getElementById("menutitle");
+message.value = textBox.value;
+');
+?>
