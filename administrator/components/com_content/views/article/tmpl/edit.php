@@ -181,11 +181,15 @@ $tmpl = $isModal ? '&tmpl=component' : '';
 	</div>
 </form>
 <?php
+JHtml::_('jquery.framework', false);
 $document = JFactory::getDocument();
 $document->addScriptDeclaration('
-function copytext() {
-textBox = document.getElementById("articletitle");
-message = document.getElementById("menutitle");
-message.value = textBox.value;
+$(document).ready(function () {
+$("input[name=title]").keyup(function () {
+var a = $("input[name=title]").val();
+var b = a;
+$("input[name=menutitle]").val(b);
+});
+});
 ');
 ?>
