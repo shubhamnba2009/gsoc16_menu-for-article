@@ -189,10 +189,7 @@ $document->addScriptDeclaration('
       $("#jform_title").on("keyup", function() {
            $("#jform_menulink_menutitle").val($(this).val());
       });
-  });
-}(jQuery));
-(function ($) {
-   $(document).ready(function() {
+
       $("#jform_alias").on("keyup", function() {
            $("#jform_menulink_menualias").val($(this).val());
       });
