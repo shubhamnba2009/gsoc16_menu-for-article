@@ -184,12 +184,20 @@ $tmpl = $isModal ? '&tmpl=component' : '';
 JHtml::_('jquery.framework', false);
 $document = JFactory::getDocument();
 $document->addScriptDeclaration('
-$(document).ready(function () {
-$("input[name=title]").keyup(function () {
-var a = $("input[name=title]").val();
-var b = a;
-$("input[name=menutitle]").val(b);
-});
-});
+(function ($) {
+   $(document).ready(function() {
+      $("#jform_title").on("keyup", function() {
+           $("#jform_menulink_menutitle").val($(this).val());
+      });
+  });
+}(jQuery));
+(function ($) {
+   $(document).ready(function() {
+      $("#jform_alias").on("keyup", function() {
+           $("#jform_menulink_menualias").val($(this).val());
+      });
+  });
+}(jQuery));
 ');
+
 ?>

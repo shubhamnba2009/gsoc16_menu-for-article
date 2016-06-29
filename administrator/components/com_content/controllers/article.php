@@ -177,7 +177,7 @@ class ContentControllerArticle extends JControllerForm
 			'access' => 1,
 			'template_style_id' => 0,
 			'home' => 0,
-			'language' => '*',
+			'language' => $validData['language'],
 			'client_id' => 0
 		);
 
