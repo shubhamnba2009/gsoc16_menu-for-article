@@ -164,9 +164,9 @@ $tmpl = $isModal ? '&tmpl=component' : '';
 			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'menulink', JText::_('COM_CONTENT_MENU_LINK', true)); ?>
 			<div class="row-fluid form-horizontal-desktop">
 				<div class="span6">
-					<?php echo $this->form->getControlGroup('menulink'); ?>
+					<?php echo $this->form->renderField('menulink'); ?>
 					<?php foreach ($this->form->getGroup('menulink') as $field) : ?>
-						<?php echo $field->getControlGroup(); ?>
+						<?php echo $field->renderField(); ?>
 					<?php endforeach; ?>
 				</div>
 			</div> 

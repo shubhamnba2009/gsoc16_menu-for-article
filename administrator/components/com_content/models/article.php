@@ -318,6 +318,18 @@ class ContentModelArticle extends JModelAdmin
 			}
 		}
 
+		$menu = JFactory::getApplication()->getMenu('site');
+		$menuItems = $menu->getItems('link', 'index.php?option=com_content&view=article&id=' . (int) $item->id);
+
+		if(!empty($menuItems)) {
+			$item->menulink = array(
+				'menutitle' => $menuItems[0]->title,
+				'menualias' => $menuItems[0]->alias,
+				'menutype' => $menuItems[0]->menutype,
+				'parent_id' => $menuItems[0]->parent_id
+			);
+		}
+
 		return $item;
 	}
 
