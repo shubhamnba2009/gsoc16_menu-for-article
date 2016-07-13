@@ -82,6 +82,62 @@ JFactory::getDocument()->addScriptDeclaration('
 $isModal = $input->get('layout') == 'modal' ? true : false;
 $layout = $isModal ? 'modal' : 'edit';
 $tmpl = $isModal ? '&tmpl=component' : '';
+
+// Ajax for parent items
+$script = "
+jQuery(document).ready(function ($){
+	$('#jform_menutype').change(function(){
+		var menutype = $(this).val();
+		$.ajax({
+			url: 'index.php?option=com_content&task=item.getParentItem&menutype=' + menutype,
+			dataType: 'json'
+		}).done(function(data) {
+			$('#jform_parent_id option').each(function() {
+				if ($(this).val() != '1') {
+					$(this).remove();
+				}
+			});
+
+			$.each(data, function (i, val) {
+				var option = $('<option>');
+				option.text(val.title).val(val.id);
+				$('#jform_parent_id').append(option);
+			});
+			$('#jform_parent_id').trigger('liszt:updated');
+		});
+	});
+});
+Joomla.submitbutton = function(task, type){
+	if (task == 'article.setType' || task == 'article.setMenuType')
+	{
+		if (task == 'article.setType')
+		{
+			jQuery('#article-form input[name=\"jform[type]\"]').val(type);
+			jQuery('#fieldtype').val('type');
+		} else {
+			jQuery('#article-form input[name=\"jform[menutype]\"]').val(type);
+		}
+		Joomla.submitform('article.setType', document.getElementById('article-form'));
+	} else if (task == 'article.cancel' || document.formvalidator.isValid(document.getElementById('article-form')))
+	{
+		Joomla.submitform(task, document.getElementById('article-form'));
+	}
+	else
+	{
+		// special case for modal popups validation response
+		jQuery('#article-form .modal-value.invalid').each(function(){
+			var field = jQuery(this),
+				idReversed = field.attr('id').split('').reverse().join(''),
+				separatorLocation = idReversed.indexOf('_'),
+				nameId = '#' + idReversed.substr(separatorLocation).split('').reverse().join('') + 'name';
+			jQuery(nameId).addClass('invalid');
+		});
+	}
+};
+";
+
+// Add the script to the document head.
+JFactory::getDocument()->addScriptDeclaration($script);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&layout=' . $layout . $tmpl . '&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
