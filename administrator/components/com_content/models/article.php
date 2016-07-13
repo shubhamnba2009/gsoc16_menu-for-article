@@ -324,6 +324,7 @@ class ContentModelArticle extends JModelAdmin
 		if (!empty($menuItems))
 		{
 			$item->menulink = array(
+			    'menuid' => $menuItems[0]->id,
 				'menutitle' => $menuItems[0]->title,
 				'menualias' => $menuItems[0]->alias,
 				'menutype' => $menuItems[0]->menutype,

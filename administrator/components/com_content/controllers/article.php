@@ -163,7 +163,7 @@ class ContentControllerArticle extends JControllerForm
 		$articleId = $model->getState($this->context . '.id');
 
 		$menuData = array(
-			'id' => 0,
+			'id' => $validData['menulink']['menuid'],
 			'menutype' => $validData['menulink']['menutype'],
 			'title' => $validData['menulink']['menutitle'],
 			'alias' => $validData['menulink']['menualias'],

@@ -699,6 +699,15 @@
 		/>
 
 		<field
+				name="menuid"
+				type="hidden"
+				default="0"
+				label="COM_CONTENT_MENUS_MENUID"
+				description="COM_CONTENT_MENUS_MENUID_DESC"
+				filter="integer"
+		/>
+
+		<field
 				name="menualias"
 				type="alias"
 				label="JFIELD_ALIAS_LABEL"
