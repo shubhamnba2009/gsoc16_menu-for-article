@@ -1,9 +1,11 @@
 /**
+ * @package     Joomla.Tests
+ * @subpackage  JavaScript Tests
+ *
  * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @package     Joomla
- * @subpackage  JavaScript Tests
- * @since       3.6
+ *
+ * @since       3.6.3
  * @version     1.0.0
  */
 
@@ -21,13 +23,13 @@ define(['jquery', 'testsRoot/repeatable/spec-setup', 'jasmineJquery'], function 
 		});
 
 		it('should fix name attributes on the repeatable element contents', function () {
-			expect($modal.find('input').first()).toHaveAttr('name', 'field1-1');
-			expect($modal.find('input').last()).toHaveAttr('name', 'field2-1');
+			expect($modal.find('input').first()).toHaveAttr('name', '1-field1');
+			expect($modal.find('input').last()).toHaveAttr('name', '1-field2');
 		});
 
 		it('should fix id attributes on the repeatable element contents', function () {
-			expect($modal.find('input').first()).toHaveAttr('id', 'field1-1');
-			expect($modal.find('input').last()).toHaveAttr('id', 'field2-1');
+			expect($modal.find('input').first()).toHaveAttr('id', '1-field1');
+			expect($modal.find('input').last()).toHaveAttr('id', '1-field2');
 		});
 
 		it('should fire the weready event', function () {
@@ -70,11 +72,11 @@ define(['jquery', 'testsRoot/repeatable/spec-setup', 'jasmineJquery'], function 
 		});
 
 		it('should fix name attributes on the new repeatable element contents', function () {
-			expect($modal.find('input').last()).toHaveAttr('name', 'field2-2');
+			expect($modal.find('input').last()).toHaveAttr('name', '2-field2');
 		});
 
 		it('should fix id attributes on the new repeatable element contents', function () {
-			expect($modal.find('input').last()).toHaveAttr('id', 'field2-2');
+			expect($modal.find('input').last()).toHaveAttr('id', '2-field2');
 		});
 
 		it('should fire the row-add event', function () {
